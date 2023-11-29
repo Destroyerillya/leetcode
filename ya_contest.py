@@ -38,40 +38,4 @@ def palindrom_time_1() -> int:
         print(i[::-1])
     return counter
 
-
-def palindrom_time_2() -> int:
-    max_hours, max_minutes = "703", "3070"
-    max_hours_int = int(max_hours)
-    max_minutes_int = int(max_minutes)
-    if max_hours > max_minutes:
-        max_hours, max_minutes = max_minutes, max_hours
-    max_digits = max(len(str(max_hours_int - 1)), len(str(max_minutes_int - 1)))
-    counter = 0
-    i = len(max_hours) - 1
-    cur_hour = 0
-    number = 1
-    tens = 1
-    next_len = 0
-    while i != 0:
-        new_minute = str(cur_hour)[::-1]
-        new_minute = new_minute + "0" * (max_digits - len(new_minute))
-        if cur_hour <= max_hours_int and int(new_minute) <= max_minutes_int:
-            print(cur_hour)
-            cur_hour += 1
-            counter += 1
-        elif cur_hour <= max_hours_int and int(new_minute) > max_minutes_int:
-            if number <= 9:
-                number += 1
-            else:
-                number = 1
-                tens *= 10
-                i -= 1
-            cur_hour = str(number) + str(tens)
-            cur_hour = int(cur_hour)
-        elif cur_hour > max_hours_int:
-            return counter
-
-
-
 print(palindrom_time_1())
-print(palindrom_time_2())
